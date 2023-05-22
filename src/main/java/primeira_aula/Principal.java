@@ -12,15 +12,14 @@ public class Principal {
 			String sexo = JOptionPane.showInputDialog("Digite o sexo");
 			double peso = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso (kg)"));
 			double altura = Double.parseDouble(JOptionPane.showInputDialog("Digite o altura (m)"));
+			System.out.print("Nome: " + nome + ", sexo: " + sexo + ", resultado IMC: ");
 			tabelaImc(calculoImc(peso, altura));
 			
 			op = Integer.parseInt(JOptionPane.showInputDialog("Novo cadastro\n1 - Sim\n2 - Não"));
 			
-		} while (op == 1);
-			
+		} while (op == 1);			
 		
-		//Pessoa p1 = new Pessoa("Max", "Masculino", 81.0, 1.80);
-			
+		//Pessoa p1 = new Pessoa("Max", "Masculino", 81.0, 1.80);			
 		//p1.tabelaImc(p1.calculoImc());
 
 	}
