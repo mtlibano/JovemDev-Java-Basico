@@ -5,21 +5,23 @@ import javax.swing.JOptionPane;
 public class Principal {
 	
 	public static void main(String[] args) {
-				
+		
+		int op = 0;
 		do {
 			String nome = JOptionPane.showInputDialog("Digite o nome");
 			String sexo = JOptionPane.showInputDialog("Digite o sexo");
 			double peso = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso (kg)"));
 			double altura = Double.parseDouble(JOptionPane.showInputDialog("Digite o altura (m)"));
+			tabelaImc(calculoImc(peso, altura));
 			
+			op = Integer.parseInt(JOptionPane.showInputDialog("Novo cadastro\n1 - Sim\n2 - Não"));
 			
-			
-		} while (op == "s");
+		} while (op == 1);
 			
 		
-		Pessoa p1 = new Pessoa("Max", "Masculino", 81.0, 1.80);
+		//Pessoa p1 = new Pessoa("Max", "Masculino", 81.0, 1.80);
 			
-		p1.tabelaImc(p1.calculoImc());
+		//p1.tabelaImc(p1.calculoImc());
 
 	}
 	
