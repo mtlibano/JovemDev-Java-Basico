@@ -12,8 +12,9 @@ public class Principal {
 			String sexo = JOptionPane.showInputDialog("Digite o sexo");
 			double peso = Double.parseDouble(JOptionPane.showInputDialog("Digite o peso (kg)"));
 			double altura = Double.parseDouble(JOptionPane.showInputDialog("Digite o altura (m)"));
-			System.out.print("Nome: " + nome + ", sexo: " + sexo + ", resultado IMC: ");
-			tabelaImc(calculoImc(peso, altura));
+			double resultadoImc = calculoImc(peso, altura);
+			System.out.print("Nome: " + nome + ", sexo: " + sexo + ", resultado IMC: " + resultadoImc + " = ");
+			tabelaImc(calculoImc(peso, altura), sexo);
 			
 			op = Integer.parseInt(JOptionPane.showInputDialog("Novo cadastro\n1 - Sim\n2 - Não"));
 			
@@ -28,25 +29,35 @@ public class Principal {
 		 return peso / (altura*altura);
 	}
 	
-	public static void tabelaImc(double imc) {
+	public static void tabelaImc(double imc, String sexo) {
 		
-		if (imc < 16) {
-			System.out.println("Baixo peso Grau III");
-		} else if (imc < 16.99) {
-			System.out.println("Baixo peso Grau II");
-		} else if (imc < 18.49) {
-			System.out.println("Baixo peso Grau I");
-		} else if (imc < 24.99) {
-			System.out.println("Peso Ideal");
-		} else if (imc < 29.99) {
-			System.out.println("Sobrepeso");
-		} else if (imc < 34.99) {
-			System.out.println("Obesidade Grau I");
-		} else if (imc < 39.99) {
-			System.out.println("Obesidade Grau II");
-		}else if (imc >= 40) {
-			System.out.println("Obesidade Grau III");
-		}		
+		if (sexo.equalsIgnoreCase("MASCULINO")) {
+			if (imc < 20.7) {
+				System.out.println("abaixo do peso");
+			} else if (imc <= 26.4) {
+				System.out.println("peso ideal");
+			} else if (imc <= 27.8) {
+				System.out.println("pouco acima do peso");
+			} else if (imc <= 31.1) {
+				System.out.println("acima do peso");
+			} else if (imc > 31.2 ) {
+				System.out.println("obesidade");
+			}
+		} else if (sexo.equalsIgnoreCase("FEMININO")) {
+			if (imc < 19.1) {
+				System.out.println("abaixo do peso");
+			} else if (imc <= 25.8) {
+				System.out.println("peso ideal");
+			} else if (imc <= 27.3) {
+				System.out.println("pouco acima do peso");
+			} else if (imc <= 32.3) {
+				System.out.println("acima do peso");
+			} else if (imc > 32.4 ) {
+				System.out.println("obesidade");
+			}
+			
+		}
+				
 	}
 
 }

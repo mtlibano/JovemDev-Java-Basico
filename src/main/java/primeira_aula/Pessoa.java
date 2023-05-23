@@ -14,7 +14,7 @@ public class Pessoa {
 		this.altura = altura;
 	}
 	
-	public double calculoImc() {
+	/*public double calculoImc() {
 		 return this.peso / (this.altura*this.altura);
 	}
 	
@@ -37,5 +37,5 @@ public class Pessoa {
 		}else if (imc >= 40) {
 			System.out.println("Obesidade Grau III");
 		}		
-	}
+	}*/
 }
