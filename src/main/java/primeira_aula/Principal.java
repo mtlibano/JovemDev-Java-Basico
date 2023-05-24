@@ -55,6 +55,6 @@ public class Principal {
 			} else if (imc > 32.4 ) {
 				System.out.println("obesidade");
 			}
-		}		
+		}
 	}
 }
