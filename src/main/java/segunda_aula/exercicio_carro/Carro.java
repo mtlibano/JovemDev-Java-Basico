@@ -1,6 +1,7 @@
 package segunda_aula.exercicio_carro;
 
 import javax.swing.JOptionPane;
+import java.time.LocalDate;
 
 public class Carro {
 
@@ -23,28 +24,31 @@ public class Carro {
 	}
 
 	public void cadastrar() {
+		marca = JOptionPane.showInputDialog("Digite a marca");
 
-		marca = JOptionPane.showInputDialog("Digite a marca do veículo");
-		ano = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano do veículo"));
+		int anoAtual = LocalDate.now().getYear();
+		boolean validao = false;
 
-		int op = Integer.parseInt(JOptionPane.showInputDialog("Digte a cor\n1 - Preto\n2 - Branco\n3 - Cinza"));
-		if (op == 1) {
-			cor = opcoes.PRETO.getDescricao();
-		} else if (op == 2) {
-			cor = opcoes.BRANCO.getDescricao();
-		} else if (op == 3) {
-			cor = opcoes.CINZA.getDescricao();
+		while (!validao) {
+			try {
+				ano = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano"));
+				if (ano <= anoAtual) {
+					validao = true;
+				} else {
+					JOptionPane.showMessageDialog(null, "Ano inválido");
+				}
+			} catch (NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Ano inválido");
+			}
 		}
 
+		String[] arrayCor = {opcoes.PRETO.getDescricao(), opcoes.BRANCO.getDescricao(), opcoes.CINZA.getDescricao()};
+		cor = String.valueOf(JOptionPane.showInputDialog(null, "Selecione a COR", "Seleção de cor", JOptionPane.QUESTION_MESSAGE, null, arrayCor, arrayCor[0]));
+
 		System.out.println(marca + " " + ano + " " + cor);
-
 	}
-	
+
 	public String toString() {
-		return "Marca: " + marca + ", ano: " + ano + ", cor: " + cor;		
+		return "Marca: " + marca + ", ano: " + ano + ", cor: " + cor;
 	}
-	
-	
-	
-
 }
