@@ -18,7 +18,7 @@ public class Principal {
 			
 			op = Integer.parseInt(JOptionPane.showInputDialog("Novo cadastro\n1 - Sim\n2 - Não"));
 			
-		} while (op == 1);			
+		} while (op == 1);
 		
 		//Pessoa p1 = new Pessoa("Max", "Masculino", 81.0, 1.80);			
 		//p1.tabelaImc(p1.calculoImc());
@@ -55,9 +55,6 @@ public class Principal {
 			} else if (imc > 32.4 ) {
 				System.out.println("obesidade");
 			}
-			
 		}
-				
 	}
-
 }
