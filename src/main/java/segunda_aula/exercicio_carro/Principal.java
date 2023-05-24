@@ -21,11 +21,11 @@ public class Principal {
 				carros.add(c);
 
 			} else if (op == 2) {
-				int anoInicio = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano inicial"));
+				int anoInicial = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano inicial"));
 				int anoFinal = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano final"));
 				int contador = 0;
 				for (Carro c : carros) {
-					if (c.ano >= anoInicio && c.ano <= anoFinal) {
+					if (c.ano >= anoInicial && c.ano <= anoFinal) {
 						System.out.println(c.toString());
 						contador++;
 					}
@@ -44,8 +44,7 @@ public class Principal {
 				System.out.println("Porcentagem de CARROS dessa MARCA: " + (contador*100/carros.size()) + "%");
 
 			} else if (op == 4) {
-				String[] arrayCor = {Carro.opcoes.PRETO.getDescricao(), Carro.opcoes.BRANCO.getDescricao(), Carro.opcoes.CINZA.getDescricao()};
-				String listarCor = String.valueOf(JOptionPane.showInputDialog(null, "Selecione a COR", "Opções de cores", JOptionPane.QUESTION_MESSAGE, null, arrayCor, arrayCor[0]));
+				String listarCor = String.valueOf(JOptionPane.showInputDialog(null, "Selecione a COR", "Opções de cores", JOptionPane.QUESTION_MESSAGE, null, Carro.opcoes.values(), Carro.opcoes.values()));
 				int contador = 0;
 				for (Carro c : carros) {
 					if (c.cor.equalsIgnoreCase(listarCor)) {

@@ -9,19 +9,7 @@ public class Carro {
 	int ano;
 	String cor;
 
-	public enum opcoes {
-		PRETO("Preto"), BRANCO("Branco"), CINZA("Cinza");
-
-		private final String descricao;
-
-		opcoes(String descricao) {
-			this.descricao = descricao;
-		}
-
-		public String getDescricao() {
-			return this.descricao;
-		}
-	}
+	public enum opcoes {PRETO, BRANCO, CINZA;}
 
 	public void cadastrar() {
 		marca = JOptionPane.showInputDialog("Digite a marca");
@@ -42,8 +30,7 @@ public class Carro {
 			}
 		}
 
-		String[] arrayCor = {opcoes.PRETO.getDescricao(), opcoes.BRANCO.getDescricao(), opcoes.CINZA.getDescricao()};
-		cor = String.valueOf(JOptionPane.showInputDialog(null, "Selecione a COR", "Seleção de cor", JOptionPane.QUESTION_MESSAGE, null, arrayCor, arrayCor[0]));
+		cor = String.valueOf(JOptionPane.showInputDialog(null, "Selecione a COR", "Seleção de cor", JOptionPane.QUESTION_MESSAGE, null, opcoes.values(), opcoes.values()));
 
 		System.out.println(marca + " " + ano + " " + cor);
 	}
