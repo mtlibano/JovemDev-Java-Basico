@@ -50,9 +50,7 @@ public class Pessoa {
 			} else if (imc > 32.4 ) {
 				avaliacao = "obesidade";
 			}
-			
 		}
 		return "valor " + imc + ", resultado " + avaliacao;
 	}
-
 }
