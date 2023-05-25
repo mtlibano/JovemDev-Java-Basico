@@ -22,6 +22,6 @@ public class Jogador {
         return "Nome: " + getNome()
                 + ", número camisa: " + getNumCamisa()
                 + ", qtd gols: " + getQtdGols()
-                + "\n========================";
+                + "\n------------\n";
     }
 }

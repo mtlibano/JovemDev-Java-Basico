@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Util {
 
-    static int menuPrincipal() {
+    public static int menuPrincipal() {
         String menu = "1 - Cadastrar TIME\n"
                 + "2 - Listar todos os jogadores de um time\n"
                 + "3 - Verificar artilheiro do campeonato\n"
@@ -15,30 +15,21 @@ public class Util {
 
         return Integer.parseInt(JOptionPane.showInputDialog(menu));
     }
-
-    static void listarJogadoresTime(ArrayList<Time> time) {
-
-        String nomeTime = JOptionPane.showInputDialog("Informe o nome do TIME");
-
-        for (Time t : time) {
-
-            //if (t.getNome().equalsIgnoreCase(nomeTime)) {
-
-                System.out.println(t.getNome());
-
-                ArrayList<Jogador> jogadores = t.getJogadores();
-
-                System.out.println("Jogadores do Time " + t.getNome() + ":");
-                for (Jogador jogador : jogadores) {
-
-                    System.out.println("Nome: " + jogador.getNome() + ", Número da camisa: " + jogador.getNumCamisa());
-                }
-
-                /*for (Jogador j : t.getJogadores()) {
-                    System.out.println(j.getNome());
-                    //print += j.getNome();
-                }*/
-           //}
-        }
+    
+    public static Time escolheTime(List<Time> times) {
+    	
     }
+    
+    static String listarJogadoresTime(ArrayList<Time> times) {
+    	String nomeTime = JOptionPane.showInputDialog("Digite o nome do time");
+    	String retorno = "";
+    	
+    	for (Time time : times) {
+    		if (time.getNome().equalsIgnoreCase(nomeTime)) {
+    			retorno += time.listJogadores();
+    		}
+		}
+    	return retorno;
+    }
+
 }

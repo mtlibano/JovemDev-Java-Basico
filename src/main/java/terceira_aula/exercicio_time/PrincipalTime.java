@@ -1,6 +1,6 @@
 package terceira_aula.exercicio_time;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class PrincipalTime {
@@ -16,9 +16,11 @@ public class PrincipalTime {
                 case 1:
                     Time t = new Time();
                     t.cadastrarTime();
+                    JOptionPane.showMessageDialog(null, t.listJogadores());
                     break;
                 case 2:
-                    Util.listarJogadoresTime(time);
+                	JOptionPane.showMessageDialog(null, Util.listarJogadoresTime(time));
+    				break;
 
             }
 

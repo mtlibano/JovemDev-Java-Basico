@@ -22,14 +22,35 @@ public class Time {
         do {
             j.cadastrarJogador();
             jogadores.add(j);
-            System.out.println(j.toString());
+            //System.out.println(j.toString());
             String[] opcoes = {"Sim", "Não"};
             op = JOptionPane.showOptionDialog(null,"Cadastrar novo JOGADOR?","Jogador", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
         } while (op != 1);
     }
-
-    boolean isNomeTime(String nomeTime) {
-        return getNome().equalsIgnoreCase(nomeTime);
+    
+    public String listJogadores() {
+    	String print = "Time: " + nome + "\n\n";
+    	for (Jogador jogador : jogadores) {
+    		print += jogador.toString();
+		}
+    	return print;
     }
+    
+    public Jogador getArtilheiro() {
+    	Jogador artilheiro = jogadores.get(0);
+    	
+    	for (Jogador jogador : jogadores) {
+			if (jogador.getQtdGols() > artilheiro.getQtdGols()) {
+				artilheiro = jogador;
+			}			
+		}
+    	return artilheiro;
+    }
+    
+    public int getGols() {
+    	
+    }
+
+
 
 }
