@@ -25,13 +25,13 @@ public class PrincipalLivro {
                     JOptionPane.showMessageDialog(null, Util.listarTodosLivros(listaLivro));
                     break;
                 case 4:
-                    JOptionPane.showMessageDialog(null, Util.buscarPorAutor(listaLivro));
+                    JOptionPane.showMessageDialog(null, Util.buscarPorAutor(listaLivro, listaAutor));
                     break;
                 case 5:
                     JOptionPane.showMessageDialog(null, Util.buscarPorValor(listaLivro));
                     break;
                 case 6:
-                    JOptionPane.showMessageDialog(null, Util.listarLivrosAutoresInfantis(listaLivro));
+                    JOptionPane.showMessageDialog(null, Util.listarLivrosAutoresCriancas(listaLivro));
                     break;
                 case 7:
                     JOptionPane.showMessageDialog(null, Util.listarLivrosPorSexo(listaLivro));
