@@ -12,16 +12,13 @@ public class Jogador {
     private int numCamisa;
     private int qtdGols;
 
-    void cadastrarJogador() {
+    public void cadastrar() {
         this.nome = JOptionPane.showInputDialog("Informe o NOME do jogador");
         this.numCamisa = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da CAMISA"));
         this.qtdGols = Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade de GOLS"));
     }
 
     public String toString() {
-        return "Nome: " + getNome()
-                + ", número camisa: " + getNumCamisa()
-                + ", qtd gols: " + getQtdGols()
-                + "\n------------\n";
+        return getNome() + ", " + getNumCamisa() + ", " + getQtdGols() + "\n------------\n";
     }
 }

@@ -2,38 +2,32 @@ package terceira_aula.exercicio_time;
 
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PrincipalTime {
 
     public static void main(String[] args) {
 
-        ArrayList<Time> time = new ArrayList<>();
+        List<Time> times = new ArrayList<Time>();
 
         int op = 0;
         do {
             op = Util.menuPrincipal();
             switch (op) {
                 case 1:
-                    Time t = new Time();
-                    t.cadastrarTime();
-                    JOptionPane.showMessageDialog(null, t.listJogadores());
+                    Util.cadastrarTime(times);
                     break;
                 case 2:
-                	JOptionPane.showMessageDialog(null, Util.listarJogadoresTime(time));
-    				break;
+                    JOptionPane.showMessageDialog(null, Util.listarJogadoresTime(times));
+                    break;
+                case 3:
+                    JOptionPane.showMessageDialog(null, Util.artilheiroCampeonato(times));
+                    break;
+                case 4:
+                    JOptionPane.showMessageDialog(null, Util.timeMaisGols(times));
+                    break;
 
             }
-
-
         } while (op != 5);
-
-
-
-
-
-
-
-
     }
-
 }

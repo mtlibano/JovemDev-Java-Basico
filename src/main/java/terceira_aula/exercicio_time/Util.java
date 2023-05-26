@@ -15,21 +15,46 @@ public class Util {
 
         return Integer.parseInt(JOptionPane.showInputDialog(menu));
     }
+
+    public static void cadastrarTime(List<Time> times) {
+        Time t = new Time();
+        t.cadastrar();
+        times.add(t);
+    }
     
     public static Time escolheTime(List<Time> times) {
-    	
+        String menu = "Selecione um time\n";
+        int pos = 1;
+        for (Time time : times) {
+            menu += pos + " - " + time.getNome() + "\n";
+            pos++;
+        }
+        int op = Integer.parseInt(JOptionPane.showInputDialog(menu));
+        return times.get(op-1);
     }
     
-    static String listarJogadoresTime(ArrayList<Time> times) {
-    	String nomeTime = JOptionPane.showInputDialog("Digite o nome do time");
-    	String retorno = "";
-    	
-    	for (Time time : times) {
-    		if (time.getNome().equalsIgnoreCase(nomeTime)) {
-    			retorno += time.listJogadores();
-    		}
-		}
-    	return retorno;
+    static String listarJogadoresTime(List<Time> times) {
+    	Time t = escolheTime(times);
+        return t.listJogadores();
     }
 
+    public static String artilheiroCampeonato(List<Time> times) {
+        Jogador artilheiro = new Jogador();
+        for (Time time : times) {
+            if (time.getArtilheiro().getQtdGols() > artilheiro.getQtdGols()) {
+                artilheiro = time.getArtilheiro();
+            }
+        }
+        return artilheiro.toString();
+    }
+
+    public static String timeMaisGols(List<Time> times) {
+        Time timeMaisGols = new Time();
+        for (Time time : times) {
+            if (time.getGols() > timeMaisGols.getGols()) {
+                timeMaisGols = time;
+            }
+        }
+        return timeMaisGols.getNome();
+    }
 }

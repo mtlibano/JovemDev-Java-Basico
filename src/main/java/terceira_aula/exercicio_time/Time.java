@@ -12,17 +12,17 @@ public class Time {
     private String nome;
     private ArrayList<Jogador> jogadores;
 
-    void cadastrarTime() {
+    public void cadastrar() {
         nome = JOptionPane.showInputDialog("Digite o NOME do TIME");
-        System.out.println("Time: " + nome);
+
         this.jogadores = new ArrayList<>();
 
         int op = 0;
         Jogador j = new Jogador();
         do {
-            j.cadastrarJogador();
+            j.cadastrar();
             jogadores.add(j);
-            //System.out.println(j.toString());
+
             String[] opcoes = {"Sim", "Não"};
             op = JOptionPane.showOptionDialog(null,"Cadastrar novo JOGADOR?","Jogador", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
         } while (op != 1);
@@ -48,9 +48,11 @@ public class Time {
     }
     
     public int getGols() {
-    	
+
+        int gols = 0;
+        for (Jogador jogador : jogadores) {
+            gols += jogador.getQtdGols();
+        }
+        return gols;
     }
-
-
-
 }
