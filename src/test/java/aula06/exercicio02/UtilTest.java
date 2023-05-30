@@ -3,10 +3,9 @@ package aula06.exercicio02;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilTest {
 
@@ -27,6 +26,11 @@ public class UtilTest {
         Disciplina d2 = new Disciplina("fisica", 40.0, p2);
         bd.addDisciplina(d1);
         bd.addDisciplina(d2);
+
+        Aluno a1 = new Aluno("max");
+        Aluno a2 = new Aluno("mari");
+        bd.addAluno(a1);
+        bd.addAluno(a2);
     }
 
     @Test
@@ -57,19 +61,36 @@ public class UtilTest {
     @Test
     @DisplayName("Teste cadastro aluno")
     void testAddAluno() {
-        List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-        disciplinas.add(bd.listAllDisciplina().get(0));
-        disciplinas.add(bd.listAllDisciplina().get(1));
-        Aluno a = new Aluno("Max Tiago", disciplinas);
+        List<Disciplina> lista = bd.listAllDisciplina();
+        assertEquals(2, lista.size());
+        Aluno a = new Aluno("Max Tiago");
         bd.addAluno(a);
-        assertEquals("Max Tiago", bd.listAllAluno().get(0).getNome());
-        assertEquals("matematica", bd.listAllAluno().get(0).getDisciplinas().get(0).getNome());
+        assertEquals("Max Tiago", bd.listAllAluno().get(2).getNome());
     }
 
+    @Test
+    @DisplayName("Teste buscar aluno por nome")
+    void testGetAlunoNome() {
+        Aluno a = bd.getAlunoNome("max");
+        assertEquals("max", a.getNome());
+    }
 
+    @Test
+    @DisplayName("Teste buscar disciplina por nome")
+    void testGetDisciplinaNome() {
+        Disciplina d = bd.getDisciplinaNome("fisica");
+        assertEquals("fisica", d.getNome());
+        assertEquals(40, d.getCargaHoraria());
+    }
 
+    @Test
+    @DisplayName("Teste add Disciplina Aluno")
+    void testAddDisciplinaAluno() {
+        Disciplina disciplina = bd.listAllDisciplina().get(0);
+        Aluno aluno = bd.listAllAluno().get(0);
 
+        bd.matricularAluno(aluno, disciplina);
 
+        assertTrue(aluno.getDisciplinas().contains(disciplina));
+    }
 }
-
-
