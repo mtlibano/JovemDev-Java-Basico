@@ -24,8 +24,30 @@ public class Util {
         return a;
     }
 
-    public static void matricularAluno(Aluno nomeAluno, Disciplina nomeDisciplina) {
-        nomeAluno.adicionarDisciplina(nomeDisciplina);
+    public static void matricularAluno(Aluno aluno, Disciplina disciplina) {
+        aluno.adicionarDisciplina(disciplina);
+    }
+    
+    public static void informarNotas(Aluno aluno, Disciplina disciplina, double[] notas) {
+        aluno.adicionarNotas(disciplina, notas);
+    }
+    
+    public static void listarDisciplinasAlunoMedia(Aluno aluno) {
+        System.out.println("Disciplinas matriculadas pelo aluno " + aluno.getNome() + ":");
+        for (Disciplina disciplina : aluno.getDisciplinas()) {
+            double media = aluno.calcularMedia(disciplina);
+            System.out.println("- " + disciplina.getNome() + " (Média: " + media + ")");
+        }
+    }
+
+    public static void listarDisciplinasPosGraduacao() {
+        System.out.println("Disciplinas lecionadas por professores com pós-graduação:");
+        for (Disciplina disciplina : bdDisciplina) {
+            Professor professor = disciplina.getProfessor();
+            if (professor.getFormacao().equals(EnumFormacao.POS_GRADUACAO)) {
+                System.out.println("- " + disciplina.getNome());
+            }
+        }
     }
 
     public static Aluno getAlunoNome(String nome) {
