@@ -14,15 +14,31 @@ public class Util {
 		return p;
 	}
 	
-	public Disciplina addDisciplina(Disciplina d, List<Professor> p) {
+	public Disciplina addDisciplina(Disciplina d) {
 		bdDisciplina.add(d);
 		return d;
 	}
 	
-	public Aluno addAluno(Aluno a, List<Disciplina> d) {
+	public Aluno addAluno(Aluno a) {
 		bdAluno.add(a);
 		return a;
 	}
-	
-	
+
+	public List<Professor> listAllProf() {
+		return bdProfessor;
+	}
+
+	public List<Disciplina> listAllDisciplina() {
+		return bdDisciplina;
+	}
+
+	public List<Aluno> listAllAluno() {
+		return bdAluno;
+	}
+
+	public void clearData() {
+		bdProfessor.clear();
+		bdAluno.clear();
+		bdDisciplina.clear();
+	}
 }

@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @RequiredArgsConstructor
 public class Aluno {
-	
-	private String nome;
-	private List<Disciplina> disciplina = new ArrayList<>();
-	
 
+	@NonNull
+	private String nome;
+	@NonNull
+	private List<Disciplina> disciplinas;
 }
