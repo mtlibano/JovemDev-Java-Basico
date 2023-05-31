@@ -6,11 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor @Getter
 public enum EnumAdmMedicamentos {
 
-    INJETAVEL ("Injetável"),
-    TOPICO ("Tópico"),
-    ORAL ("Oral"),
-    SUPOSITORIO ("Supositório");
-
-    private String descricao;
+    INJETAVEL,
+    TOPICO,
+    ORAL,
+    SUPOSITORIO
 
 }

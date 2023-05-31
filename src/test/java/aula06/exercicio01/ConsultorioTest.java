@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConsultorioTest {
 
@@ -36,7 +37,7 @@ public class ConsultorioTest {
         m1.addIndicacao("Febre");
         m1.addContraIndicacao("Diabetes");
 
-        Medicamento m2 = new Medicamento("Medicamento 2", EnumAdmMedicamentos.ORAL);
+        Medicamento m2 = new Medicamento("Medicamento 2", EnumAdmMedicamentos.INJETAVEL);
         m2.addIndicacao("Gripe");
 
         consultorio.getMedicamentos().add(m1);
@@ -76,5 +77,19 @@ public class ConsultorioTest {
         Medicamento m = consultorio.getMedicamentos().get(0);
         consultorio.prescreveMedicamento(p, m);
         assertEquals(0, p.getMedicamentos().size());
+    }
+
+    @Test
+    @DisplayName("Teste pessoa existe")
+    void existePessoa() {
+        Pessoa p = consultorio.getPessoas().get(2);
+        assertTrue(consultorio.exitePessoa(p));
+    }
+
+    @Test
+    @DisplayName("Teste medicamento existe")
+    void existeMedicamento() {
+        Medicamento m = consultorio.getMedicamentos().get(1);
+        assertTrue(consultorio.existeMedicamento(m));
     }
 }

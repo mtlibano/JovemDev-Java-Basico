@@ -15,8 +15,8 @@ public class Medicamento {
     private String nome;
     @NonNull
     private EnumAdmMedicamentos adm;
-    private List<String> contraIndicacoes = new ArrayList<String>();
-    private List<String> indicacoes = new ArrayList<String>();
+    private List<String> contraIndicacoes = new ArrayList<>();
+    private List<String> indicacoes = new ArrayList<>();
 
     public boolean isIndicado(String sintoma) {
         return indicacoes.contains(sintoma);

@@ -1,6 +1,5 @@
 package aula06.exercicio01.models;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +14,11 @@ public class Pessoa {
     private String nome;
     @NonNull
     private String sintoma;
-    private List<String> alergias = new ArrayList<String>();
-    private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
+    private List<String> alergias = new ArrayList<>();
+    private List<Medicamento> medicamentos = new ArrayList<>();
 
     public boolean addMedicamento(Medicamento m) {
-        if (m.isIndicado(sintoma) && m.isContraIndicacao(alergias)) {
+        if (m.isIndicado(sintoma) && !m.isContraIndicacao(alergias)) {
             medicamentos.add(m);
             return true;
         }
@@ -29,5 +28,4 @@ public class Pessoa {
     public void addCondicaoSaude(String condicaoSaude) {
         alergias.add(condicaoSaude);
     }
-
 }

@@ -10,8 +10,8 @@ import java.util.List;
 @Getter
 public class Consultorio {
 
-    private List<Medicamento> medicamentos = new ArrayList<Medicamento>();
-    private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+    private List<Medicamento> medicamentos = new ArrayList<>();
+    private List<Pessoa> pessoas = new ArrayList<>();
 
     public void cadastrarMedicamento(Medicamento m) {
         medicamentos.add(m);
@@ -21,11 +21,11 @@ public class Consultorio {
         pessoas.add(p);
     }
 
-    boolean existeMedicamento(Medicamento m) {
+    public boolean existeMedicamento(Medicamento m) {
         return medicamentos.contains(m);
     }
 
-    boolean exitePessoa(Pessoa p) {
+    public boolean exitePessoa(Pessoa p) {
         return pessoas.contains(p);
     }
 
