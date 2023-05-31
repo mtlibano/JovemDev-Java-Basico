@@ -1,6 +1,10 @@
 package aula06.exercicio02;
 
-import java.util.ArrayList;
+import aula06.exercicio02.enums.EnumFormacao;
+import aula06.exercicio02.models.Aluno;
+import aula06.exercicio02.models.Disciplina;
+import aula06.exercicio02.models.Professor;
+import aula06.exercicio02.utils.Util;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilTest {
 
-	private Util bd = new Util();
+	public final Util bd = new Util();
 
 	@Test
 	@BeforeEach
@@ -25,8 +29,10 @@ public class UtilTest {
 
 		Disciplina d1 = new Disciplina("matematica", 60.0, p1);
 		Disciplina d2 = new Disciplina("fisica", 40.0, p2);
+		Disciplina d3 = new Disciplina("quimica", 20.0, p3);
 		bd.addDisciplina(d1);
 		bd.addDisciplina(d2);
+		bd.addDisciplina(d3);
 
 		Aluno a1 = new Aluno("max");
 		Aluno a2 = new Aluno("mari");
@@ -50,11 +56,11 @@ public class UtilTest {
 	@DisplayName("Teste cadastro disciplina")
 	void testAddDisciplina() {
 		List<Disciplina> lista = bd.listAllDisciplina();
-		assertEquals(2, lista.size());
+		assertEquals(3, lista.size());
 		Disciplina d = new Disciplina("quimica", 20.0, bd.listAllProf().get(2));
 		lista.add(d);
 		lista = bd.listAllDisciplina();
-		assertEquals(3, lista.size());
+		assertEquals(4, lista.size());
 		assertEquals("quimica", lista.get(2).getNome());
 		assertEquals("prof3", lista.get(2).getProfessor().getNome());
 	}
@@ -62,7 +68,7 @@ public class UtilTest {
 	@Test
 	@DisplayName("Teste cadastro aluno")
 	void testAddAluno() {
-		List<Disciplina> lista = bd.listAllDisciplina();
+		List<Aluno> lista = bd.listAllAluno();
 		assertEquals(2, lista.size());
 		Aluno a = new Aluno("Max Tiago");
 		bd.addAluno(a);
@@ -87,21 +93,19 @@ public class UtilTest {
 	@Test
 	@DisplayName("Teste add Disciplina Aluno")
 	void testAddDisciplinaAluno() {
-		Professor professor1 = new Professor("joao", EnumFormacao.ESPECIALIZACAO);
-		Disciplina disciplina1 = new Disciplina("math", 60, professor1);
-		Aluno aluno1 = new Aluno("pedro");
+		Disciplina disciplina1 = bd.listAllDisciplina().get(0);
+		Aluno aluno1 = bd.listAllAluno().get(0);
 
 		bd.matricularAluno(aluno1, disciplina1);
-
+		assertEquals("matematica", aluno1.getDisciplinas().get(0).getNome());
 	}
 
 	@Test
 	@DisplayName("Teste informar notas")
 	void testInformarNotas() {
-		Professor professor1 = new Professor("joao", EnumFormacao.ESPECIALIZACAO);
-		Disciplina disciplina1 = new Disciplina("math", 60, professor1);
-		Disciplina disciplina2 = new Disciplina("ingles", 40, professor1);
-		Aluno aluno1 = new Aluno("pedro");
+		Disciplina disciplina1 = bd.listAllDisciplina().get(1);
+		Disciplina disciplina2 = bd.listAllDisciplina().get(2);
+		Aluno aluno1 = bd.listAllAluno().get(1);
 
 		bd.matricularAluno(aluno1, disciplina1);
 		bd.matricularAluno(aluno1, disciplina2);
@@ -119,10 +123,9 @@ public class UtilTest {
 	@Test
 	@DisplayName("Teste listar disciplinas de um aluno com sua média")
 	void testListarDisciplinasAlunoMedia() {
-		Professor professor1 = new Professor("joao", EnumFormacao.ESPECIALIZACAO);
-		Disciplina disciplina1 = new Disciplina("math", 60, professor1);
-		Disciplina disciplina2 = new Disciplina("ingles", 40, professor1);
-		Aluno aluno1 = new Aluno("pedro");
+		Disciplina disciplina1 = bd.listAllDisciplina().get(1);
+		Disciplina disciplina2 = bd.listAllDisciplina().get(2);
+		Aluno aluno1 = bd.listAllAluno().get(1);
 
 		bd.matricularAluno(aluno1, disciplina1);
 		bd.matricularAluno(aluno1, disciplina2);
@@ -132,26 +135,15 @@ public class UtilTest {
 
 		bd.informarNotas(aluno1, disciplina1, notasAluno1Disciplina1);
 		bd.informarNotas(aluno1, disciplina2, notasAluno1Disciplina2);
-		
+
 		bd.listarDisciplinasAlunoMedia(aluno1);
 		assertTrue(aluno1.getDisciplinas().contains(disciplina1));
         assertTrue(aluno1.getDisciplinas().contains(disciplina2));
 	}
-	
-	
+
 	@Test
 	@DisplayName("Teste listar disciplinas com professores com pós-graduação")
 	void testListarDisciplinaPosGraduacao() {
-		Professor prof1 = new Professor("clavison", EnumFormacao.ESPECIALIZACAO);
-		Professor prof2 = new Professor("thiago", EnumFormacao.POS_GRADUACAO);
-		Professor prof3 = new Professor("joao", EnumFormacao.GRADUACAO);
-		Disciplina disciplina1 = new Disciplina("math", 60, prof1);
-		Disciplina disciplina2 = new Disciplina("ingles", 40, prof2);
-		Disciplina disciplina3 = new Disciplina("fisica", 40, prof3);
-		bd.addDisciplina(disciplina1);
-		bd.addDisciplina(disciplina2);
-		bd.addDisciplina(disciplina3);
-				
 		bd.listarDisciplinasPosGraduacao();
 	}
 }

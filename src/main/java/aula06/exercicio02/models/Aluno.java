@@ -1,4 +1,4 @@
-package aula06.exercicio02;
+package aula06.exercicio02.models;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -15,8 +15,8 @@ public class Aluno {
 
 	@NonNull
 	private String nome;
-	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-	private Map<Disciplina, double[]> notas = new HashMap<Disciplina, double[]>();
+	private List<Disciplina> disciplinas = new ArrayList<>();
+	private Map<Disciplina, double[]> notas = new HashMap<>();
 
 	public void adicionarDisciplina(Disciplina disciplina) {
         disciplinas.add(disciplina);

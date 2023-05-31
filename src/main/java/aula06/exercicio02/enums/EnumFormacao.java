@@ -1,9 +1,9 @@
-package aula06.exercicio02;
+package aula06.exercicio02.enums;
 
 public enum EnumFormacao {
 	
 	GRADUACAO,
 	ESPECIALIZACAO,
-	POS_GRADUACAO;
+	POS_GRADUACAO
 
 }
