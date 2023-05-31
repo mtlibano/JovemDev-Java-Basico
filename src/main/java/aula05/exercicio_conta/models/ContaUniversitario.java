@@ -15,16 +15,4 @@ public class ContaUniversitario extends Conta{
 			saldo += valor;
 		}
 	}
-	
-	@Override
-	public void saque(double valor) {
-		if (valor <= saldo) {
-			saldo -= valor;			
-		}
-	}
-	
-	@Override
-	public boolean transferencia(double valor) {
-		return  2000 <= (saldo + valor);
-	}
 }

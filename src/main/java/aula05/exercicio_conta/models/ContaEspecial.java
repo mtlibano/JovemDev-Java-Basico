@@ -14,11 +14,10 @@ public class ContaEspecial extends Conta {
 	
 	@Override
 	public void saque(double valor) {
-		double aux = 0;
 		if (valor <= saldo) {
-			saldo -= valor;			
-		} else {
-			aux = valor - saldo;
+			saldo -= valor;
+		} else if (valor <= (saldo+limite)){
+			double aux = valor - saldo;
 			saldo = 0;
 			limite -= aux;
 		}
