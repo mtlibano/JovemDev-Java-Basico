@@ -14,7 +14,7 @@ public class Produto {
     public boolean inEstoque(int qtd) {
         return estoque > qtd;
     }
-
+    
     public void movimentoEstoque(int qtd) {
         estoque -= qtd;
     }
