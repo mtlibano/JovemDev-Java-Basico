@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter @AllArgsConstructor
-public class Conta {
+public abstract class Conta {
 	
 	protected int numero;
 	protected int agencia;

@@ -5,10 +5,14 @@ import lombok.Getter;
 @Getter
 public class Medicamento extends Produto {
 
-    public Medicamento(String nome, int estoque, double valor) {
+    private boolean reterReceita;
+
+    public Medicamento(String nome, int estoque, double valor, boolean reterReceita) {
         super(nome, estoque, valor);
+        this.reterReceita = reterReceita;
     }
 
-    //private boolean reterReceita;
-
+    public boolean isReterReceita() {
+        return reterReceita;
+    }
 }

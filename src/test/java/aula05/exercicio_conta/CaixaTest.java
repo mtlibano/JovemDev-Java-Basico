@@ -1,5 +1,6 @@
 package aula05.exercicio_conta;
 
+import aula05.exercicio_conta.models.ContaCorrente;
 import aula05.exercicio_conta.models.ContaUniversitario;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -18,14 +19,14 @@ public class CaixaTest {
 	void init() {
 		caixa.getContas().clear();
 		
-		Conta c1 = new Conta(1, 1, "max", 1000);
-		Conta c2 = new Conta(2, 1, "mari", 2000);
+		Conta cc1 = new ContaCorrente(1, 1, "max", 1000);
+		Conta cc2 = new ContaCorrente(2, 1, "mari", 2000);
 		Conta ce1 = new ContaEspecial(3, 1, "pedro", 1200, 3000);
 		Conta ce2 = new ContaEspecial(4, 1, "isa", 600, 1500);
 		Conta cu1 = new ContaUniversitario(5, 1, "joao", 400);
 		Conta cu2 = new ContaUniversitario(6, 1, "bia", 800);
-		caixa.addConta(c1);
-		caixa.addConta(c2);
+		caixa.addConta(cc1);
+		caixa.addConta(cc2);
 		caixa.addConta(ce1);
 		caixa.addConta(ce2);
 		caixa.addConta(cu1);
