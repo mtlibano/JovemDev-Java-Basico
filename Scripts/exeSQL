@@ -1,0 +1,96 @@
+--1
+select * from cargo;
+
+--2
+select nome, qt_vereadores from cidade order by nome;
+
+--3
+select nome, qt_vereadores from cidade where qt_vereadores > 9;
+
+--4
+select count(*) from cidade c where qt_vereadores > 9;
+
+--5
+select max(qt_vereadores) from cidade;
+
+--6
+select nome from cidade where qt_vereadores = (select max(qt_vereadores) from cidade);
+
+--7
+select nome from candidato where cargo = 1 order by nome;
+
+--8
+select nome from candidato where cargo = 2 and nome like '%MARIA%' order by nome;
+
+--9
+select nome from candidato where cargo = 2 and nome like 'Y%' order by nome;
+
+--10
+select cid.nome, c.nome from cidade cid inner join candidato c on c.cidade = cid.id and c.cargo = 1 order by cid.nome, c.nome;
+
+--11
+select cid.nome, c.nome from cidade cid inner join candidato c on c.cidade = cid.id and c.cargo = 1 where cid.nome = 'TUBARÃO' order by cid.nome, c.nome;
+
+--12
+select c.nome, cid.nome from cidade cid inner join candidato c on c.cidade = cid.id and c.cargo = 1 where cid.qt_eleitores = (select max(qt_eleitores) from cidade);
+
+--13
+select count(*) from candidato c
+inner join cidade cid on c.cidade = cid.id and cid.nome = 'TUBARÃO'
+inner join cargo car on c.cargo = car.id and car.nome = 'Vereador';
+
+--14
+select cid.nome, count(cand.*)
+from cidade cid
+inner join candidato cand on cand.cidade = cid.id
+inner join cargo car on car.id = cand.cargo and car.nome = 'Vereador'
+group by cid.nome
+order by cid.nome;
+
+--15
+select car.nome, sum(brancos), sum(nulos)
+from voto_invalido vi
+inner join cidade cid on vi.cidade = cid.id and cid.nome = 'TUBARÃO'
+inner join cargo car on car.id = vi.cargo
+group by car.nome;
+
+--16 REFATORAR
+select sum(vi.nulos+vi.brancos)
+from cidade cid
+inner join voto_invalido vi on vi.cidade = cid.id and vi.cargo = 1 where cid.nome = 'TUBARÃO';
+
+--17 REFATORAR
+select c.nome, v.voto
+from candidato c
+inner join voto v on v.candidato = c.id
+inner join cidade cid on cid.id = c.cidade
+and c.cargo = 1
+where cid.nome = 'TUBARÃO'
+order by v.voto desc;
+
+--18 REFATORAR
+select c.nome, v.voto
+from candidato c
+inner join voto v on v.candidato = c.id
+inner join cidade cid on cid.id = c.cidade
+and c.cargo = 2
+where cid.nome = 'TUBARÃO'
+order by v.voto desc;
+
+--19
+select max(v.voto), cid.nome
+from candidato c
+inner join voto v on v.candidato = c.id
+inner join cidade cid on cid.id = c.cidade
+and c.cargo = 1
+group by cid.nome
+order by cid.nome;
+
+--20
+select par.sigla, sum(v.voto) as votos
+from voto v
+inner join candidato c on c.id = v.candidato
+inner join cidade cid on cid.id = c.cidade and cid.nome = 'TUBARÃO'
+inner join partido par on par.id = c.partido
+group by par.sigla
+order by votos desc;
