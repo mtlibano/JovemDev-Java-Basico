@@ -1,0 +1,24 @@
+--1 - Os 100 primeiros clientes a comprar na empresa
+select * from Client
+where CustomerType <> 'Company'
+order by DateFirstPurchase desc
+limit 100;
+
+--2 - Qtd produtos, soma total de pesos, preco medio, maior preço, menor preço
+select
+    count(ProductName),
+    sum(Weight),
+    avg(UnitPrice),
+    max(UnitPrice),
+    min(UnitPrice)
+from Product;
+
+--3 - Qtd de funcionários por departamento
+select
+    DepartmentName
+    count(DepartmentName)
+from
+    Employee
+group by
+    DepartmentName;
+

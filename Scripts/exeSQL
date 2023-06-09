@@ -137,17 +137,34 @@ inner join cidade cid on cid.id = cand.cidade and cid.nome = 'TUBARÃO'
 inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
 inner join voto v on v.candidato = cand.id;
 
+--21 - CORRECAO
+select sum(v.voto) + vi.brancos + vi.nulos as total from candidato cand
+inner join cidade cid on cid.id = cand.cidade and cid.nome = 'TUBARÃO'
+inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
+inner join voto v on v.candidato = cand.id
+inner join voto_invalido vi on vi.cidade = cid.id and vi.cargo = cand.cargo
+group by vi.brancos, vi.nulos;
+
 --22
 select
-	sum(v.voto) +
+    cid.qt_eleitores -
+	(sum(v.voto) +
 	(select sum(vi.brancos + vi.nulos) from voto_invalido vi
 	inner join cidade cid on cid.id = vi.cidade and cid.nome = 'TUBARÃO'
-	inner join cargo car on car.id = vi.cargo  and car.nome = 'Prefeito') - cid.qt_eleitores as total
+	inner join cargo car on car.id = vi.cargo  and car.nome = 'Prefeito')) as total
 from candidato cand
 inner join cidade cid on cid.id = cand.cidade and cid.nome = 'TUBARÃO'
 inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
 inner join voto v on v.candidato = cand.id
 group by cid.qt_eleitores;
+
+--22 - CORRECAO
+select cid.qt_eleitores - (sum(v.voto) + vi.brancos + vi.nulos) as total from candidato cand
+inner join cidade cid on cid.id = cand.cidade and cid.nome = 'TUBARÃO'
+inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
+inner join voto v on v.candidato = cand.id
+inner join voto_invalido vi on vi.cidade = cid.id and vi.cargo = cand.cargo
+group by cid.qt_eleitores, vi.brancos, vi.nulos;
 
 --23
 select
@@ -168,6 +185,26 @@ inner join cidade cid on cid.id = vi.cidade
 inner join cargo car on car.id = vi.cargo  and car.nome = 'Prefeito'
 group by cid.nome;
 
+--23 - CORRECAO
+select cid.nome, cid.qt_eleitores - (sum(v.voto) + vi.brancos + vi.nulos) as total
+from candidato cand
+inner join cidade cid on cid.id = cand.cidade
+inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
+inner join voto v on v.candidato = cand.id
+inner join voto_invalido vi on vi.cidade = cid.id and vi.cargo = cand.cargo
+group by cid.nome, cid.qt_eleitores, vi.brancos, vi.nulos
+order by total desc;
+
+--24
+select cid.nome, ((cid.qt_eleitores - (sum(v.voto) + vi.brancos + vi.nulos)) * 100 / cid.qt_eleitores) as total
+from candidato cand
+inner join cidade cid on cid.id = cand.cidade
+inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
+inner join voto v on v.candidato = cand.id
+inner join voto_invalido vi on vi.cidade = cid.id and vi.cargo = cand.cargo
+group by cid.nome, cid.qt_eleitores, vi.brancos, vi.nulos
+order by total desc;
+
 --25
 select cid.nome, max(v.voto) as votos
 from candidato cand
@@ -176,3 +213,10 @@ inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
 inner join voto v on v.candidato = cand.id
 group by cid.nome
 order by cid.nome;
+
+--25 - CORRECAO
+select distinct on (cid.nome) cid.nome, cand.nome, v.voto from voto v
+inner join candidato cand on cand.id = v.candidato
+inner join cidade cid on cid.id = cand.cidade
+inner join cargo car on car.id = cand.cargo and car.nome = 'Prefeito'
+order by cid.nome, v.voto desc;
